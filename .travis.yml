@@ -1,0 +1,23 @@
+# To prevent travis error like 'rakefile not found', we will add the next line 
+language: generic
+
+# We need super use permission
+sudo: required
+
+# The programs we need to be available before the travis runs
+services:
+  - docker
+
+# These are the commands we want travis to execute before our tests run
+before_install:
+  # We can use any tag we want in travis build process since the image will only exist here on travis
+  - docker build  -t faradele/docker-react -f Dockerfile.dev .
+
+# Add the commands or scripts that will be executed as part of our test
+# This is where we tell travis how to run our tests
+script:
+  # Run the built docker image with the default command overridden so we can pass in the 
+  # npm run test command as the startup command so our tests run when the command starts 
+  # we also need to make sure our test command runs once and exits so that travis can move along 
+  # instead of waiting indefinitely for the response
+  - docker run -e CI=true faradele/docker-react npm run test
