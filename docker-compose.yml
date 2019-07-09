@@ -1,0 +1,26 @@
+version: '3'
+
+services:
+  web:
+    build: # we can't use . as the build context since we are using a custom named docker file for developmemnt
+      context: .
+      dockerfile: Dockerfile.dev
+    ports:
+      - "3000:3000"
+    volumes: 
+      - /app/node_modules # don't map the node_modules folder to the local machine. use the one in the container
+      - .:/app # map the current folder into the /app folder on the container
+  
+  # Setup a second service to run only our tests 
+  # the default downside to this approach is that we get a non-interactive command prompt but we get live reload working
+  # so this works well, but we can't interact with the test suite
+  # the other approach where we attach to the running container and run the test suite directly inside it 
+  # gives us an interactive test suites
+  tests:
+    build:
+      context: .
+      dockerfile: Dockerfile.dev
+    volumes:
+      - /app/node_modules
+      - .:/app
+    command: ["npm", "run", "test"]
