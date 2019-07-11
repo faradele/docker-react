@@ -23,3 +23,9 @@ docker-compose up (you can add --build if you've made changes recently)
 docker attach container-id -> this allows us to attach our terminal to the stdin of a running container
 
 It is possible to create a multi stage docker file that can go through multiple build stages. This way we can use two different base images one for build and the other the base image for the final image that will be created https://www.udemy.com/docker-and-kubernetes-the-complete-guide/learn/lecture/11437094#content
+
+We utilize travis ci to run automated tests for our app once we push to github. Travis ci can run our tests and if they were successful, it can move to the next step which will be deploying the application itself.
+
+For hosting the application, we will be using AWS Elastic Beanstalk. It is the easiest way to host a docker application if we are running one container at a time.
+
+Elastic beanstalk automatically spin up new instances - essentially automatically scaling up our application to handle excess loads
