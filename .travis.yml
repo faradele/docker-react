@@ -24,14 +24,14 @@ script:
 
   # Configuration for travis to deploy our application to aws after running the tests
 deploy:
-    provider: elasticbeanstalk
-    region: "eu-central-1"
-    app: "docker-react-2"
-    env: "DockerReact2-env"
-    bucket_name: "elasticbeanstalk-eu-central-1-357158836665"
-    bucket_path: "docker-react-2"
-    on:
-      branch: master
-    acess_key_id: "$AWS_ACCESS_KEY"
-    secret_access_key:
-      secure: "$AWS_SECRET_KEY"
+  provider: elasticbeanstalk
+  region: "eu-central-1"
+  app: "docker-react-2"
+  env: "DockerReact2-env"
+  bucket_name: "elasticbeanstalk-eu-central-1-357158836665"
+  bucket_path: "docker-react-2"
+  on:
+    branch: master
+  acess_key_id: "$AWS_ACCESS_KEY"
+  secret_access_key:
+    secure: "$AWS_SECRET_KEY"
