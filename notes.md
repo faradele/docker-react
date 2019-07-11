@@ -29,3 +29,5 @@ We utilize travis ci to run automated tests for our app once we push to github. 
 For hosting the application, we will be using AWS Elastic Beanstalk. It is the easiest way to host a docker application if we are running one container at a time.
 
 Elastic beanstalk automatically spin up new instances - essentially automatically scaling up our application to handle excess loads
+
+Travis CI has built in support for automatic deployment to a number of hosting providers including aws elastic beanstalk. We can configure travis to deploy to elastic beanstalk by giving it access keys and other values it needs to do the deployment.
